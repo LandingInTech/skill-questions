@@ -16,7 +16,7 @@ class QuestionsSkill(Skill):
         super().__init__(opsdroid, config, *args, **kwargs)
         self.connector = self.opsdroid.get_connector("twitch")
 
-    @match_regex(r"\!question|question for (?P<question>.*)", case_sensitive=False, matching_condition="search")
+    @match_regex(r"(?:\!question|question for) (?P<question>.*)", case_sensitive=False, matching_condition="search")
     async def question_asked(self, message):
         """Question asked by viewer."""
         question = message.entities["question"]
